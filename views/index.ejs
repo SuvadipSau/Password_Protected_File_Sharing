@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPLOAD HERE</title>
+   
+    <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
+</head>
+
+<body style="  background: #2980B9;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);">
+
+
+   <h1 style="margin: 1rem; text-align: center;  font-family: 'Arvo', serif;
+    font-size: 60px;margin-top: 10%;" >UPLOAD HERE</h1>
+            <form action="/upload" method="post"
+                style="display: grid; gap: .5rem; grid-template-columns: auto 1fr; max-width: 600px; margin: 0 auto;margin-left: 37%; text-align: center;"
+                enctype="multipart/form-data">
+                <label style=" font-family: 'Arvo', serif;font-size: 20px;" for="file">File(Max size: 10MB):</label>
+                <input style=" width: 60%; height: 20px;padding: 5px; font-size: 15px;" type="file" id="file" name="file" required />
+                <label style=" font-family: 'Arvo', serif;font-size: 20px;" for="password">Password:</label>
+                <input style=" width: 50%; height: 20px;padding: 5px; font-size: 15px; border-radius: 15px;
+                      border: 3px solid #2980b2;" type="password" id="password" name="password" />
+                <button id="btn" style="grid-column: span 2; width: 200px; height: 35px;
+                                         padding: 2px;
+                                         font-size: 17px;
+                                         background-color: #080c14f6;
+                                         border-radius: 15px;
+                                         border: none;
+                                         color: white;
+                                         border: 3px solid #2b2599;
+                                         margin-left: 17%;" type="submit">UPLOAD</button>
+            </form>
+            <% if (locals.fileLink !=null) { %>
+                <div id="link" style="margin-top: 1rem; text-align: center;">
+                    Your file is uploaded
+                    <a href="<%= locals.fileLink %>">
+                        <%= locals.fileLink %>
+                    </a>
+                </div>
+                <% } %>
+            <script>
+               /* const btn = document.getElementById('btn');
+
+                    btn.addEventListener('click', () => {
+                        const lnk = document.getElementById('link');
+
+                       // if (lnk.style.visibility === 'hidden') {
+                            lnk.style.visibility = 'visible';
+                       // } else {
+                        //    lnk.style.visibility = 'hidden';
+                       // }
+                    });*/
+                    var uploadField = document.getElementById("file");
+
+                        uploadField.onchange = function () {
+                            if (this.files[0].size > 10*1024*1024) {
+                                alert("File is too big!");
+                                this.value = "";
+                            };
+                        };
+
+            </script>
+</body>
+
+</html>
